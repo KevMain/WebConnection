@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CCE.WebConnection.DAL.EntityClasses.CustomerEntity>
+
+@{
+    ViewBag.Title = "ListCustomers";
+}
+
+<h2>ListCustomers</h2>
+
+<table>
+    <tr>    
+        <th>CustomerId</th>  
+        <th>Customer Name</th>
+    </tr>
+    @foreach (var item in Model) {
+    
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.PkId)</td>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+        </tr>
+    }
+</table>
