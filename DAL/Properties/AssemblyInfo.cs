@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BL")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DAL")]
+[assembly: AssemblyDescription("DAL")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CCEE")]
-[assembly: AssemblyProduct("BL")]
-[assembly: AssemblyCopyright("Copyright © CCEE 2011")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("CCEE")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d1b5e5ed-b651-4737-8276-051bb928df7b")]
+[assembly: Guid("472a2caa-b0b8-4764-9ef8-11610c6744c6")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,7 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.1.*")]

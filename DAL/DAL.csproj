@@ -103,10 +103,9 @@
     <Compile Include="DatabaseSpecific\DataAccessAdapter.cs" />
     <Compile Include="DatabaseSpecific\PersistenceInfoProvider.cs" />
     <Compile Include="DatabaseSpecific\RetrievalProcedures.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="DatabaseSpecific\App.config" />
     <None Include="DatabaseSpecific\bin\Debug\WebConnection.DALDBSpecific.dll.config" />
