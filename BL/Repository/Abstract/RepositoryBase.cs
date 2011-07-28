@@ -1,14 +1,20 @@
 ﻿using System.Collections.Generic;
-using CCE.WebConnection.DAL.DatabaseSpecific;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 
 namespace CCE.WebConnection.BL.Repository.Abstract
 {
-    public abstract class SQLRepository<T> : IRepository<T> where T : EntityBase2, IEntity2, new()
+    public abstract class RepositoryBase<T> : IRepository<T> where T : EntityBase2, IEntity2, new()
     {
+        public IAdapterFactory AdapterFactory { get; set; }
+
+        protected RepositoryBase(IAdapterFactory adapterFactory)
+        {
+            AdapterFactory = adapterFactory;
+        }
+
         public T GetById(int id)
         {
-            using (DataAccessAdapter adapter = new DataAccessAdapter())
+            using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
             {
                 return GetById(id, adapter);
             }
@@ -18,7 +24,7 @@ namespace CCE.WebConnection.BL.Repository.Abstract
 
         public IList<T> GetAll()
         {
-            using (DataAccessAdapter adapter = new DataAccessAdapter())
+            using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
             {
                 return GetAll(adapter);
             }
@@ -28,7 +34,7 @@ namespace CCE.WebConnection.BL.Repository.Abstract
 
         public void Save(T entity)
         {
-            using (DataAccessAdapter adapter = new DataAccessAdapter())
+            using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
             {
                 Save(entity, adapter);
             }
@@ -42,7 +48,7 @@ namespace CCE.WebConnection.BL.Repository.Abstract
 
         public void Delete(T entity)
         {
-            using (DataAccessAdapter adapter = new DataAccessAdapter())
+            using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
             {
                 Delete(entity, adapter);
             }

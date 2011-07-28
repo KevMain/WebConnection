@@ -56,7 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IAdapterFactory.cs" />
     <Compile Include="Repository\Abstract\ICustomersRepository.cs" />
-    <Compile Include="Repository\Abstract\SQLRepository.cs" />
+    <Compile Include="Repository\Abstract\RepositoryBase.cs" />
     <Compile Include="Repository\Concrete\AdapterFactory.cs" />
     <Compile Include="Repository\Concrete\CustomersRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />

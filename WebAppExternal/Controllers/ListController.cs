@@ -15,7 +15,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
 
         public ActionResult ListCustomers(int? page)
         {
-            CustomersViewModel customersViewModel = new CustomersViewModel(customersRepository.GetByPageID(page));
+            CustomersViewModel customersViewModel = customersRepository.GetByPageID(page);
             return View(customersViewModel);
         }
     }

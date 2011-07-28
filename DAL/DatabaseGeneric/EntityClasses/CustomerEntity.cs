@@ -27,7 +27,7 @@ namespace CCE.WebConnection.DAL.EntityClasses
 	// __LLBLGENPRO_USER_CODE_REGION_END
 	/// <summary>Entity class which represents the entity 'Customer'.<br/><br/></summary>
 	[Serializable]
-	public partial class CustomerEntity : CommonEntityBase
+    public partial class CustomerEntity : CommonEntityBase
 		// __LLBLGENPRO_USER_CODE_REGION_START AdditionalInterfaces
 		// __LLBLGENPRO_USER_CODE_REGION_END	
 	{

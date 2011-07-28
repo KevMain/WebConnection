@@ -4,11 +4,11 @@ namespace CCE.WebConnection.BL.Models.ViewModels
 {
     public class CustomerViewModel
     {
-        public CustomerEntity Customer { get; private set; }
+        public string CustomerName { get; set; }
 
         public CustomerViewModel(CustomerEntity customer)
         {
-            Customer = customer;
+            CustomerName = customer.Name;
         }
     }
 }
