@@ -1,4 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using CCE.WebConnection.BL.Models.ViewModels;
+using CCE.WebConnection.BL.Repository.Abstract;
+using CCE.WebConnection.BL.Repository.Concrete;
+using NUnit.Framework;
 
 namespace CCE.WebConnection.Tests
 {
@@ -8,8 +12,15 @@ namespace CCE.WebConnection.Tests
         [Test]
         public void AtLeastOneCustomerIsReturned()
         {
-            const int counter = 1;
-            Assert.That(counter, Is.GreaterThan(1));
+            //Arrange
+            int? page = null;
+            ICustomersRepository customersRepository = new CustomersRepository();
+
+            //Act
+            CustomersViewModel customersViewModel = new CustomersViewModel(customersRepository.GetByPageID(page));
+
+            //Assert
+            Assert.That(customersViewModel.Customers.TotalItems, Is.GreaterThan(0));
         }
     }
 }

@@ -9,7 +9,7 @@ test("HTML5 Boilerplate is sweet", function () {
     expect(1);
     equals("boilerplate".replace("boilerplate", "sweet"), "sweet", "Yes. HTML5 Boilerplate is, in fact, sweet");
 
-})
+});
 
 // these test things from plugins.js
 test("Environment is good", function () {
@@ -17,10 +17,10 @@ test("Environment is good", function () {
     ok(!!window.log, "log function present");
 
     var history = log.history && log.history.length || 0;
-    log("logging from the test suite.")
-    equals(log.history.length - history, 1, "log history keeps track")
+    log("logging from the test suite.");
+    equals(log.history.length - history, 1, "log history keeps track");
 
-    ok(!!window.Modernizr, "Modernizr global is present")
-})
+    ok(!!window.Modernizr, "Modernizr global is present");
+});
 
 

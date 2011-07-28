@@ -1,25 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using CCE.WebConnection.BL.Models.ViewModels;
 using CCE.WebConnection.BL.Repository.Abstract;
-using CCE.WebConnection.DAL.EntityClasses;
 
 namespace CCE.WebConnection.WebAppExternal.Controllers
 {
     public class ListController : Controller
     {
         private ICustomersRepository customersRepository = null;
-        private IAdapterFactory adapterFactory = null;
 
-        public ListController(ICustomersRepository customersRepository, IAdapterFactory adapterFactory)
+        public ListController(ICustomersRepository customersRepository)
         {
             this.customersRepository = customersRepository;
-            this.adapterFactory = adapterFactory;
         }
 
-        public ActionResult ListCustomers()
+        public ActionResult ListCustomers(int? page)
         {
-            IList<CustomerEntity> customers = customersRepository.GetAll(adapterFactory.GetNewSQLAdapterInstance());
-            return View(customers);
+            CustomersViewModel customersViewModel = new CustomersViewModel(customersRepository.GetByPageID(page));
+            return View(customersViewModel);
         }
     }
 }

@@ -64,18 +64,16 @@
   <CodeGenerationCyclePreferences>
     <OutputType Value="3">
       <LastUsedPreferences>
-        <DestinationRootFolder Value="C:\Projects\WebConnection\DAL" />
-        <FrameworkName Value="LLBLGen Pro Runtime Framework" />
+        <DestinationRootFolder Value="C:\Projects\WebConnection\DataAccess" />
+        <FrameworkName Value="Linq to Sql" />
         <LanguageName Value="C#" />
         <PlatformName Value=".NET 4.0" />
-        <PresetName Value="SD.Presets.Adapter.General2010" />
-        <RootNamespace Value="WebConnection.DAL" />
-        <TemplateGroup Value="Adapter" />
+        <PresetName Value="SD.LinqToSql" />
+        <RootNamespace Value="WebConnection.DataAccess" />
+        <TemplateGroup Value="General" />
         <TemplateBindings>
-          <Binding Name="SD.TemplateBindings.SqlServerSpecific.NET20" />
-          <Binding Name="SD.TemplateBindings.SharedTemplates.NET40" />
-          <Binding Name="SD.TemplateBindings.SharedTemplates.NET35" />
-          <Binding Name="SD.TemplateBindings.SharedTemplates.NET20" />
+          <Binding Name="SD.LinqToSql" />
+          <Binding Name="SD.LinqToSql.NET40" />
           <Binding Name="SD.TemplateBindings.General" />
         </TemplateBindings>
       </LastUsedPreferences>

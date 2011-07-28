@@ -2,7 +2,7 @@
 // This is generated code. 
 //////////////////////////////////////////////////////////////
 // Code is generated using LLBLGen Pro version: 3.1
-// Code is generated on: 25 July 2011 10:18:16
+// Code is generated on: 26 July 2011 09:58:13
 // Code is generated using templates: SD.TemplateBindings.SharedTemplates.NET20
 // Templates vendor: Solutions Design.
 // Templates version: 
@@ -112,7 +112,6 @@ namespace CCE.WebConnection.DAL.FactoryClasses
 			IEntity2 toReturn = new CustomerEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewCustomerUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
