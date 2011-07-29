@@ -2,7 +2,11 @@ using System.Web.Mvc;
 
 namespace CCE.WebConnection.WebAppExternal.Controllers
 {
-    public class HomeController : Controller
+    /// <summary>
+    /// Controller for home actions
+    /// </summary>
+    [HandleError]
+    public class HomeController : ControllerBase
     {
         public ActionResult Index()
         {

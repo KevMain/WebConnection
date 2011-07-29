@@ -2,7 +2,7 @@
 // This is generated code. 
 //////////////////////////////////////////////////////////////
 // Code is generated using LLBLGen Pro version: 3.1
-// Code is generated on: 26 July 2011 09:58:13
+// Code is generated on: 29 July 2011 08:58:37
 // Code is generated using templates: SD.TemplateBindings.SharedTemplates.NET20
 // Templates vendor: Solutions Design.
 // Templates version: 
@@ -20,6 +20,7 @@ using CCE.WebConnection.DAL.FactoryClasses;
 using CCE.WebConnection.DAL.RelationClasses;
 
 using SD.LLBLGen.Pro.ORMSupportClasses;
+using CCE.WebConnection.DAL.EntityContracts;
 
 namespace CCE.WebConnection.DAL.EntityClasses
 {
@@ -27,7 +28,7 @@ namespace CCE.WebConnection.DAL.EntityClasses
 	// __LLBLGENPRO_USER_CODE_REGION_END
 	/// <summary>Entity class which represents the entity 'Customer'.<br/><br/></summary>
 	[Serializable]
-    public partial class CustomerEntity : CommonEntityBase
+	public partial class CustomerEntity : CommonEntityBase, ICustomerEntity
 		// __LLBLGENPRO_USER_CODE_REGION_START AdditionalInterfaces
 		// __LLBLGENPRO_USER_CODE_REGION_END	
 	{

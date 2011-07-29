@@ -4,38 +4,43 @@ using System.Linq;
 using CCE.WebConnection.BL.Models.ViewModels;
 using CCE.WebConnection.BL.Repository.Abstract;
 using CCE.WebConnection.DAL.EntityClasses;
+using CCE.WebConnection.DAL.EntityContracts;
 using CCE.WebConnection.DAL.Linq;
-using MvcContrib.Pagination;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 
 namespace CCE.WebConnection.BL.Repository.Concrete
 {
-    public class CustomersRepository : RepositoryBase<CustomerEntity>, ICustomersRepository 
+    public class CustomersRepository : ICustomersRepository 
     {
-       public CustomersRepository(IAdapterFactory adapterFactory)
-            : base(adapterFactory)
+        public IAdapterFactory AdapterFactory { get; set; }
+
+        public CustomersRepository(IAdapterFactory adapterFactory)
         {
             AdapterFactory = adapterFactory;
         }
 
-        public override CustomerEntity GetById(int customerID, IDataAccessAdapter adapter)
-        {
-            return (from c in new LinqMetaData(adapter).Customer where c.PkId == customerID select c).Single();
-        }
-
-        public override IList<CustomerEntity> GetAll(IDataAccessAdapter adapter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CustomersViewModel GetByPageID(int? page)
+        public CustomersViewModel GetAll()
         {
             using (IDataAccessAdapter dataAccessAdapter = AdapterFactory.GetNewSQLAdapterInstance())
             {
-                var customers = (from c in new LinqMetaData(dataAccessAdapter).Customer orderby c.Name select c).AsPagination(page ?? 1, 10);
-                var totalPages = customers.TotalPages; //HACK: find a better way to do this
-                return new CustomersViewModel(customers);
+                IList<CustomerEntity> customers = (from c in new LinqMetaData(dataAccessAdapter).Customer orderby c.Name select c).ToList();
+                return ConvertToViewModel(customers);
             }
+        }
+
+        public CustomerViewModel GetByID(int customerID)
+        {
+            using (IDataAccessAdapter dataAccessAdapter = AdapterFactory.GetNewSQLAdapterInstance())
+            {
+                CustomerEntity customer = (from c in new LinqMetaData(dataAccessAdapter).Customer where c.PkId == customerID select c).Single();
+                return new CustomerViewModel(customer.PkId, customer.Name);
+            }
+        }
+
+        private CustomersViewModel ConvertToViewModel(IEnumerable<ICustomerEntity> customers)
+        {
+            IList<CustomerViewModel> customersList = customers.Select(customerEntity => new CustomerViewModel(customerEntity.PkId, customerEntity.Name)).ToList();
+            return new CustomersViewModel(customersList);
         }
     }
 }

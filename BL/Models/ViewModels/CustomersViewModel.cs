@@ -1,13 +1,12 @@
-﻿using CCE.WebConnection.DAL.EntityClasses;
-using MvcContrib.Pagination;
+﻿using System.Collections.Generic;
 
 namespace CCE.WebConnection.BL.Models.ViewModels
 {
     public class CustomersViewModel
     {
-        public IPagination<CustomerEntity> Customers { get; set; }
+        public IList<CustomerViewModel> Customers { get; set; }
 
-        public CustomersViewModel(IPagination<CustomerEntity> customers)
+        public CustomersViewModel(IList<CustomerViewModel> customers)
         {
             Customers = customers;
         }

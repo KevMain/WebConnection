@@ -63,6 +63,7 @@
     <Compile Include="DatabaseGeneric\EntityClasses\CustomerEntity.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <Compile Include="DatabaseGeneric\EntityContracts\ICustomer.cs" />
     <Compile Include="DatabaseGeneric\FactoryClasses\EntityFactories.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>

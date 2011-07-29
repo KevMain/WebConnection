@@ -12,16 +12,6 @@ namespace CCE.WebConnection.BL.Repository.Abstract
             AdapterFactory = adapterFactory;
         }
 
-        public T GetById(int id)
-        {
-            using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
-            {
-                return GetById(id, adapter);
-            }
-        }
-
-        public abstract T GetById(int id, IDataAccessAdapter adapter);
-
         public IList<T> GetAll()
         {
             using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
@@ -31,6 +21,16 @@ namespace CCE.WebConnection.BL.Repository.Abstract
         }
 
         public abstract IList<T> GetAll(IDataAccessAdapter adapter);
+
+        public T GetById(int id)
+        {
+            using (IDataAccessAdapter adapter = AdapterFactory.GetNewSQLAdapterInstance())
+            {
+                return GetById(id, adapter);
+            }
+        }
+
+        public abstract T GetById(int id, IDataAccessAdapter adapter);
 
         public void Save(T entity)
         {

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9429575-419B-4B89-BA84-7AE45650FF6A}</ProjectGuid>
+    <ProjectGuid>{5EAA1CAA-9DCE-418D-9878-163DFA929F6A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CCE.WebConnection.DAL.DatabaseSpecific</RootNamespace>
-    <AssemblyName>CCE.WebConnection.DALDBSpecific</AssemblyName>
+    <RootNamespace>WebConnection.DataAccess.DatabaseSpecific</RootNamespace>
+    <AssemblyName>WebConnection.DataAccessDBSpecific</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,25 +49,25 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <AppDesigner Include="Properties\" />
-    <Compile Include="DatabaseSpecific\ActionProcedures.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <None Include="DatabaseSpecific\App.config">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </None>
     <Compile Include="DatabaseSpecific\AssemblyInfo.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseSpecific\DataAccessAdapter.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
     <Compile Include="DatabaseSpecific\PersistenceInfoProvider.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <None Include="DatabaseSpecific\App.config">
+      <GeneratedBy>LLBLGen Pro</GeneratedBy>
+    </None>
+    <Compile Include="DatabaseSpecific\ActionProcedures.cs">
+      <GeneratedBy>LLBLGen Pro</GeneratedBy>
+    </Compile>
     <Compile Include="DatabaseSpecific\RetrievalProcedures.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <Compile Include="DatabaseSpecific\DataAccessAdapter.cs">
+      <GeneratedBy>LLBLGen Pro</GeneratedBy>
+    </Compile>
+    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

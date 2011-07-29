@@ -1,0 +1,16 @@
+﻿@model CCE.WebConnection.BL.Models.ViewModels.CustomersViewModel
+           
+@{ ViewBag.Title = "Customers Grid"; }
+
+<h2>Customers Grid</h2>
+<table>
+    <tr>    
+        <th>Customer Name</th>
+    </tr>
+        @foreach (var item in Model.Customers) {
+    
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+        </tr>
+    }
+</table>

@@ -1,9 +1,5 @@
-﻿@{
-	Page.Title = "Home Page";
-}
+﻿@{ Page.Title = "Home Page"; }
 
 <h2>Connection Test</h2>
-<p>
-    <a href="http://localhost/ConnectionTest/List/ListCustomers">View DB records</a>   
-</p>
+<p>@Html.ActionLink("View Customers", "Index", "Customers")</p>
 

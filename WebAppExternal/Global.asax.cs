@@ -40,7 +40,7 @@ namespace CCE.WebConnection.WebAppExternal
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new Plumbing.HandleErrorAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)

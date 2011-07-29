@@ -1,14 +1,16 @@
-﻿using CCE.WebConnection.DAL.EntityClasses;
+﻿using CCE.WebConnection.DAL.EntityContracts;
 
 namespace CCE.WebConnection.BL.Models.ViewModels
 {
     public class CustomerViewModel
     {
+        public int CustomerID { get; private set; }
         public string CustomerName { get; set; }
 
-        public CustomerViewModel(CustomerEntity customer)
+        public CustomerViewModel(int customerID, string customerName)
         {
-            CustomerName = customer.Name;
+            CustomerID = customerID;
+            CustomerName = customerName;
         }
     }
 }
