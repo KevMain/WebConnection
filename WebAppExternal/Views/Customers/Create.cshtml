@@ -1,0 +1,26 @@
+﻿@model CCE.WebConnection.BL.Models.ViewModels.CustomerViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Customer</h2>
+<p>
+    @Html.ValidationSummary("Unsuccessful. Please correct the errors and try again.")
+</p>
+
+@using(Html.BeginForm())
+{
+    <fieldset>
+        <legend>Fields</legend>
+        @Html.EditorFor(c => c)
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+   @Html.ActionLink("Back to Grid", "Grid", "Customers")
+</div>
+

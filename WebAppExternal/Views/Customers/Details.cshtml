@@ -7,3 +7,6 @@
 <h2>Details</h2>
 
 <p>Name=@Model.CustomerName</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", "Customers", new { id = Model.CustomerID }, null) | @Html.ActionLink("Back to List", "Grid", "Customers")
+</p>

@@ -99,7 +99,7 @@ namespace CCE.WebConnection.DAL.EntityClasses
 		#region Custom Entity code
 		
 		// __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
-		// __LLBLGENPRO_USER_CODE_REGION_END
+        // __LLBLGENPRO_USER_CODE_REGION_END
 		#endregion
 
 		#region Included code

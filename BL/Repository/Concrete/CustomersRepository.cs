@@ -37,6 +37,34 @@ namespace CCE.WebConnection.BL.Repository.Concrete
             }
         }
 
+        public void Save(CustomerViewModel customerViewModel)
+        {
+            using (IDataAccessAdapter dataAccessAdapter = AdapterFactory.GetNewSQLAdapterInstance())
+            {
+                IQueryable<CustomerEntity> customer = (from c in new LinqMetaData(dataAccessAdapter).Customer where c.PkId == customerViewModel.CustomerID select c);
+                CustomerEntity customerEntity = customer.Count() > 0 ? customer.Single() : new CustomerEntity();
+
+                //-- Set field values
+                customerEntity.Name = customerViewModel.CustomerName;
+
+                //-- Set auto fields
+                DAL.Llbl.HelperClasses.EntityUtils.UpdateAutoFields(customerEntity);
+                
+                dataAccessAdapter.SaveEntity(customerEntity, true, true);
+            }
+        }
+
+        public void Delete(CustomerViewModel customerViewModel)
+        {
+            using (IDataAccessAdapter dataAccessAdapter = AdapterFactory.GetNewSQLAdapterInstance())
+            {
+                CustomerEntity customerEntity = (from c in new LinqMetaData(dataAccessAdapter).Customer where c.PkId == customerViewModel.CustomerID select c).Single();
+                customerEntity.Name = customerViewModel.CustomerName;
+
+                dataAccessAdapter.DeleteEntity(customerEntity);
+            }
+        }
+
         private CustomersViewModel ConvertToViewModel(IEnumerable<ICustomerEntity> customers)
         {
             IList<CustomerViewModel> customersList = customers.Select(customerEntity => new CustomerViewModel(customerEntity.PkId, customerEntity.Name)).ToList();

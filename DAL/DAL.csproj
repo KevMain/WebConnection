@@ -57,6 +57,9 @@
     <Compile Include="DatabaseGeneric\ConstantsEnums.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <Compile Include="DatabaseGeneric\CustomGlobal\Const.cs" />
+    <Compile Include="DatabaseGeneric\CustomGlobal\FactoryClasses\ConcurrencyPredicateFactories.cs" />
+    <Compile Include="DatabaseGeneric\CustomGlobal\HelperClasses\EntityUtils.cs" />
     <Compile Include="DatabaseGeneric\EntityClasses\CommonEntityBase.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>

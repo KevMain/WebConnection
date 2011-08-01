@@ -6,5 +6,7 @@ namespace CCE.WebConnection.BL.Repository.Abstract
     {
         CustomersViewModel GetAll();
         CustomerViewModel GetByID(int customerID);
+        void Save(CustomerViewModel customerViewModel);
+        void Delete(CustomerViewModel customerViewModel);
     }
 }

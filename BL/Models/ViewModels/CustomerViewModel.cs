@@ -1,11 +1,18 @@
-﻿using CCE.WebConnection.DAL.EntityContracts;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CCE.WebConnection.BL.Models.ViewModels
 {
     public class CustomerViewModel
     {
-        public int CustomerID { get; private set; }
+        [Required]
+        public int CustomerID { get; set; }
+
+        [Required]
         public string CustomerName { get; set; }
+
+        public CustomerViewModel()
+        {
+        }
 
         public CustomerViewModel(int customerID, string customerName)
         {

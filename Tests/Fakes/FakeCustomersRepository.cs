@@ -22,5 +22,15 @@ namespace CCE.WebConnection.Tests.Fakes
         {
             return customerList.Customers.SingleOrDefault(c => c.CustomerID == customerID);
         }
+
+        public void Save(CustomerViewModel customerViewModel)
+        {
+            customerList.Customers[0].CustomerName = customerViewModel.CustomerName;
+        }
+
+        public void Delete(CustomerViewModel customerViewModel)
+        {
+            customerList.Customers.RemoveAt(0);
+        }
     }
 }

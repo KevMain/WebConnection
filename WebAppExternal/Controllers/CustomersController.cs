@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using CCE.WebConnection.BL.Models.ViewModels;
 using CCE.WebConnection.BL.Repository.Abstract;
 
@@ -44,8 +45,48 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         // GET: /Customers/Details/5
         public ActionResult Details(int id)
         {
-            CustomerViewModel customerViewModel = customersRepository.GetByID(id);
-            return View(customerViewModel);
+            return View(customersRepository.GetByID(id));
+        }
+
+        // GET: /Customers/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // Post: /Customers/Create
+        [HttpPost]
+        public ActionResult Create(CustomerViewModel customerViewModel)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+           customersRepository.Save(customerViewModel);
+            return RedirectToAction("Grid", "Customers");
+        }
+
+        // GET: /Customers/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View(customersRepository.GetByID(id));
+        }
+
+        // POST: /Customers/Edit/5
+        [HttpPost]
+        public ActionResult Edit(CustomerViewModel customerViewModel)
+        {
+            if (!ModelState.IsValid)
+                return View(customerViewModel);
+
+            customersRepository.Save(customerViewModel);
+            return RedirectToAction("Details", "Customers", new { id = customerViewModel.CustomerID });
+        }
+
+        // GET: /Customers/Delete/5
+        public ActionResult Delete(int id)
+        {
+            customersRepository.Delete(customersRepository.GetByID(id));
+            return RedirectToAction("Grid", "Customers");
         }
     }
 }
