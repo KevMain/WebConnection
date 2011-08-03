@@ -1,23 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CCE.WebConnection.BL.Models.Domain.Abstract;
 
 namespace CCE.WebConnection.BL.Models.ViewModels
 {
     public class CustomerViewModel
     {
         [Required]
-        public int CustomerID { get; set; }
+        public int PkId { get; set; }
 
         [Required]
-        public string CustomerName { get; set; }
+        public string Name { get; set; }
 
         public CustomerViewModel()
         {
+            
         }
 
-        public CustomerViewModel(int customerID, string customerName)
+        public CustomerViewModel(ICustomer customer)
         {
-            CustomerID = customerID;
-            CustomerName = customerName;
+            PkId = customer.PkId;
+            Name = customer.Name;
         }
     }
 }

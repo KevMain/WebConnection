@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using CCE.WebConnection.BL.EntityMapper;
+using CCE.WebConnection.BL.Models.Domain.Abstract;
+using CCE.WebConnection.BL.Models.Domain.Concrete;
 using CCE.WebConnection.BL.Models.ViewModels;
 using CCE.WebConnection.Tests.Fakes;
 using CCE.WebConnection.WebAppExternal.Controllers;
@@ -15,11 +17,11 @@ namespace CCE.WebConnection.Tests.Controllers
     {
         #region Controller Mock
 
-        public CustomersController CreateCustomersController(CustomersViewModel TestData)
+        public CustomersController CreateCustomersController(IList<ICustomer> TestData)
         {
             var repository = new FakeCustomersRepository(TestData);
             CustomersController customersController = new CustomersController(repository);
-            var mocks = new ContextMocks(customersController);
+            new ContextMocks(customersController);
 
             return customersController;
         }
@@ -69,7 +71,7 @@ namespace CCE.WebConnection.Tests.Controllers
 
             // Act
             ViewResult result = (ViewResult)controller.Grid();
-            
+
             // Assert
             Assert.AreEqual(4, ((CustomersViewModel)result.ViewData.Model).Customers.Count, "Incorrect amount of customers returned by Grid action");
         }
@@ -83,10 +85,10 @@ namespace CCE.WebConnection.Tests.Controllers
 
             // Act
             ViewResult result = (ViewResult)controller.Grid();
-            CustomersViewModel customersViewModel = (CustomersViewModel) result.ViewData.Model;
+            CustomersViewModel customersViewModel = (CustomersViewModel)result.ViewData.Model;
 
             // Assert
-            Assert.AreEqual("Customer2", customersViewModel.Customers[1].CustomerName, "Incorrect name returned for 2nd customer");
+            Assert.AreEqual("Customer2", customersViewModel.Customers[1].Name, "Incorrect name returned for 2nd customer");
         }
 
         #endregion
@@ -130,7 +132,7 @@ namespace CCE.WebConnection.Tests.Controllers
             CustomerViewModel customersViewModel = (CustomerViewModel)result.ViewData.Model;
 
             // Assert
-            Assert.AreEqual("Customer3", customersViewModel.CustomerName, "Incorrect name returned for returned customer");
+            Assert.AreEqual("Customer3", customersViewModel.Name, "Incorrect name returned for returned customer");
         }
 
         #endregion
@@ -174,21 +176,23 @@ namespace CCE.WebConnection.Tests.Controllers
             CustomerViewModel customersViewModel = (CustomerViewModel)result.ViewData.Model;
 
             // Assert
-            Assert.AreEqual("Customer2", customersViewModel.CustomerName, "Incorrect name returned for returned customer");
+            Assert.AreEqual("Customer2", customersViewModel.Name, "Incorrect name returned for returned customer");
         }
 
         [Test]
         public void Edit_Customer_With_Values_Returns_RedirectToRouteResult()
         {
             // Arrange
-            CustomersViewModel TestData = FakeCustomerData.CreateTestCustomers();
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
 
             var controller = CreateCustomersController(TestData);
-            CustomerViewModel customerViewModel = TestData.Customers[0];
+            ICustomer customer = TestData[0];
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
 
             // Act
             var result = controller.Edit(customerViewModel);
-            
+
             // Assert
             Assert.IsInstanceOf<RedirectToRouteResult>(result, "Save redirect route not returned.");
         }
@@ -196,12 +200,16 @@ namespace CCE.WebConnection.Tests.Controllers
         [Test]
         public void Edit_Customer_With_NoName_FailsValidation()
         {
+            AutoMapperConfiguration.Configure(); 
+
             // Arrange
-            CustomersViewModel TestData = FakeCustomerData.CreateTestCustomers();
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
 
             var controller = CreateCustomersController(TestData);
-            CustomerViewModel customerViewModel = TestData.Customers[0];
-            customerViewModel.CustomerName = "";
+            ICustomer customer = TestData[0];
+            customer.Name = "";
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
 
             var validationContext = new ValidationContext(customerViewModel, null, null);
             var validationResults = new List<ValidationResult>();
@@ -212,29 +220,31 @@ namespace CCE.WebConnection.Tests.Controllers
             }
 
             // Act
-            var result = controller.Edit(customerViewModel);
+            var result = controller.Edit(customerViewModel.PkId);
 
             // Assert
             Assert.IsNotNull(result, "View not rendered");
             Assert.IsInstanceOf<ViewResult>(result, "Invalid Save not rendering view.");
-
+            
             ViewResult viewResult = (ViewResult)result;
             Assert.IsTrue(string.IsNullOrEmpty(viewResult.ViewName));
             Assert.IsNotNull(viewResult.ViewData.Model as CustomerViewModel, "Invalid view model");
-            Assert.IsTrue(viewResult.ViewData.ModelState["CustomerName"].Errors.Count > 0);
+            Assert.IsTrue(viewResult.ViewData.ModelState["Name"].Errors.Count > 0);
         }
 
         [Test]
         public void Edit_Customer_With_Values_Returns_DetailsRoute()
         {
             // Arrange
-            CustomersViewModel TestData = FakeCustomerData.CreateTestCustomers();
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
             var controller = CreateCustomersController(TestData);
-            CustomerViewModel customerViewModel = TestData.Customers[0];
+            ICustomer customer = TestData[0];
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
 
             // Act
             var result = controller.Edit(customerViewModel);
-            RedirectToRouteResult redirectToRoute = (RedirectToRouteResult) result;
+            RedirectToRouteResult redirectToRoute = (RedirectToRouteResult)result;
 
             // Assert
             Assert.AreEqual(1, redirectToRoute.RouteValues["id"], "Incorrect redirect route ID returned");
@@ -246,16 +256,18 @@ namespace CCE.WebConnection.Tests.Controllers
         public void Edit_Customer_With_Values_SavesToStore()
         {
             // Arrange
-            CustomersViewModel TestData = FakeCustomerData.CreateTestCustomers();
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
             var controller = CreateCustomersController(TestData);
-            CustomerViewModel customerViewModel = TestData.Customers[0];
-            customerViewModel.CustomerName = "New Name";
+            ICustomer customer = TestData[0];
+            customer.Name = "New Name";
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
 
             // Act
-            var result = controller.Edit(customerViewModel);
-            
+            controller.Edit(customerViewModel);
+
             // Assert
-            Assert.AreEqual("New Name", TestData.Customers[0].CustomerName, "Save method not updating values");
+            Assert.AreEqual("New Name", TestData[0].Name, "Save method not updating values");
         }
 
         #endregion
@@ -263,7 +275,7 @@ namespace CCE.WebConnection.Tests.Controllers
         #region Delete
 
         [Test]
-        public void DeleteAction_Should_Return_RedirectToAction()
+        public void DeleteAction_Should_Return_PartialViewResult()
         {
             // Arrange
             var controller = CreateCustomersController(FakeCustomerData.CreateTestCustomers());
@@ -272,24 +284,133 @@ namespace CCE.WebConnection.Tests.Controllers
             var result = controller.Delete(1);
 
             // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result, "Delete redirect route was not returned.");
+            Assert.IsInstanceOf<PartialViewResult>(result, "Delete partial view was not returned.");
         }
 
         [Test]
         public void Delete_Customer_DeletesFromStore()
         {
             // Arrange
-            CustomersViewModel TestData = FakeCustomerData.CreateTestCustomers();
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
             var controller = CreateCustomersController(TestData);
-            CustomerViewModel customerViewModel = TestData.Customers[0];
+            ICustomer customer = TestData[0];
 
             // Act
-            var result = controller.Delete(customerViewModel.CustomerID);
+            controller.Delete(customer.PkId);
 
             // Assert
-            Assert.AreEqual(3, TestData.Customers.Count, "Delete method not removing customer");
+            Assert.AreEqual(3, TestData.Count, "Delete method not removing customer");
         }
-        
+
+        #endregion
+
+        #region Create
+
+        [Test]
+        public void CreateAction_Should_Return_View()
+        {
+            // Arrange
+            var controller = CreateCustomersController(FakeCustomerData.CreateTestCustomers());
+
+            // Act
+            var result = controller.Create();
+
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result, "Create view was not returned.");
+        }
+
+        [Test]
+        public void Create_Customer_With_Values_Returns_RedirectToRouteResult()
+        {
+            AutoMapperConfiguration.Configure(); 
+
+            // Arrange
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
+            var controller = CreateCustomersController(TestData);
+
+            var customer = new Customer {PkId = 49, Name = "Mr Smith"};
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
+
+            // Act
+            var result = controller.Create(customerViewModel);
+
+            // Assert
+            Assert.IsInstanceOf<RedirectToRouteResult>(result, "Create redirect route not returned.");
+        }
+
+        [Test]
+        public void Create_Customer_With_NoName_FailsValidation()
+        {
+            // Arrange
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
+            var controller = CreateCustomersController(TestData);
+
+            var customer = new Customer { PkId = 49, Name = "" };
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
+
+            var validationContext = new ValidationContext(customerViewModel, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(customerViewModel, validationContext, validationResults);
+            foreach (var validationResult in validationResults)
+            {
+                controller.ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+            }
+
+            // Act
+            var result = controller.Create(customerViewModel);
+            
+            // Assert
+            Assert.IsNotNull(result, "View not rendered");
+            Assert.IsInstanceOf<ViewResult>(result, "Invalid Save not rendering view.");
+
+            ViewResult viewResult = (ViewResult)result;
+            Assert.IsTrue(string.IsNullOrEmpty(viewResult.ViewName));
+            Assert.IsTrue(viewResult.ViewData.ModelState["Name"].Errors.Count > 0);
+        }
+
+        [Test]
+        public void Create_Customer_With_Values_Returns_DetailsRoute()
+        {
+            AutoMapperConfiguration.Configure(); 
+
+            // Arrange
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
+            var controller = CreateCustomersController(TestData);
+
+            var customer = new Customer { PkId = 49, Name = "Mr Smith" };
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
+
+            // Act
+            var result = controller.Create(customerViewModel);
+            RedirectToRouteResult redirectToRoute = (RedirectToRouteResult)result;
+
+            // Assert
+            Assert.AreEqual("Grid", redirectToRoute.RouteValues["action"], "Incorrect redirect route action returned");
+            Assert.AreEqual("Customers", redirectToRoute.RouteValues["controller"], "Incorrect redirect route controller returned");
+        }
+
+        [Test]
+        public void Create_Customer_With_Values_SavesToStore()
+        {
+            // Arrange
+            IList<ICustomer> TestData = FakeCustomerData.CreateTestCustomers();
+            var controller = CreateCustomersController(TestData);
+
+            var customer = new Customer { PkId = 49, Name = "Mr Smith" };
+
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
+
+            // Act
+            controller.Create(customerViewModel);
+
+            // Assert
+            Assert.AreEqual(5, TestData.Count, "Create method not adding customer");
+            Assert.AreEqual("Mr Smith", TestData[4].Name, "Create method not adding values correctly");
+        }
+
         #endregion
 
         #endregion

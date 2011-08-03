@@ -12,10 +12,5 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }

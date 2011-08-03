@@ -3,22 +3,10 @@
 @{ ViewBag.Title = "Customers Grid"; }
 
 <h2>Customers Grid</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create", "Customers") 
 </p>
-<table>
-    <tr>    
-        <th>Customer Name</th>
-        <th>View</th>
-        <th>Delete</th>
-    </tr>
-        @foreach (var item in Model.Customers) {
-    
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
-            <td>@Html.ActionLink("View", "Details", "Customers", new { id = item.CustomerID }, null)</td>
-            <td>@Html.ActionLink("Delete", "Delete", "Customers", new { id = item.CustomerID}, new { @class = "button-delete" } )</td>
-        </tr>
-    }
-</table>
+
+<div id="customerList">
+    @Html.Partial("PartialViews/_CustomerGrid")
+</div>

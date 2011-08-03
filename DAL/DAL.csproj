@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SD.LLBLGen.Pro.DQE.SqlServer.NET20, Version=3.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DatabaseSpecific\bin\Debug\SD.LLBLGen.Pro.DQE.SqlServer.NET20.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
@@ -43,85 +39,41 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SD.LLBLGen.Pro.LinqSupportClasses.NET35, Version=3.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Solutions Design\LLBLGen Pro v3.1\Frameworks\LLBLGen Pro\RuntimeLibraries\Net3.5\</HintPath>
+    <Reference Include="Telerik.OpenAccess, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik.OpenAccess.dll</HintPath>
     </Reference>
-    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses.NET20, Version=3.1.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Solutions Design\LLBLGen Pro v3.1\Frameworks\LLBLGen Pro\RuntimeLibraries\Net2.0\</HintPath>
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik.OpenAccess.35.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
-    <Compile Include="DatabaseGeneric\ConstantsEnums.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
+    <Compile Include="Abstract\IEntitiesModel.cs" />
+    <Compile Include="Customer.generated.cs">
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseGeneric\CustomGlobal\Const.cs" />
-    <Compile Include="DatabaseGeneric\CustomGlobal\FactoryClasses\ConcurrencyPredicateFactories.cs" />
-    <Compile Include="DatabaseGeneric\CustomGlobal\HelperClasses\EntityUtils.cs" />
-    <Compile Include="DatabaseGeneric\EntityClasses\CommonEntityBase.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
+    <Compile Include="EntityDiagrams1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseGeneric\EntityClasses\CustomerEntity.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
+    <Compile Include="ICustomerEntity.generated.cs">
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseGeneric\EntityContracts\ICustomer.cs" />
-    <Compile Include="DatabaseGeneric\FactoryClasses\EntityFactories.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\FactoryClasses\EntityFieldFactory.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\FactoryClasses\EntityFieldsFactory.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\EntityCollection.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\FieldCreationClasses.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\FieldInfoProvider.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\InheritanceInfoProvider.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\ResultsetFields.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\TypeDefaultValue.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\Linq\LinqMetaData.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\RelationClasses\CustomerRelations.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseGeneric\RelationClasses\DynamicRelation.cs">
-      <GeneratedBy>LLBLGen Pro</GeneratedBy>
-    </Compile>
-    <Compile Include="DatabaseSpecific\ActionProcedures.cs" />
-    <Compile Include="DatabaseSpecific\DataAccessAdapter.cs" />
-    <Compile Include="DatabaseSpecific\PersistenceInfoProvider.cs" />
-    <Compile Include="DatabaseSpecific\RetrievalProcedures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="DatabaseSpecific\App.config" />
-    <None Include="DatabaseSpecific\bin\Debug\WebConnection.DALDBSpecific.dll.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DatabaseSpecific\bin\Debug\SD.LLBLGen.Pro.DQE.SqlServer.NET20.dll" />
-    <Content Include="DatabaseSpecific\bin\Debug\SD.LLBLGen.Pro.DQE.SqlServer.NET20.pdb" />
-    <Content Include="DatabaseSpecific\bin\Debug\SD.LLBLGen.Pro.ORMSupportClasses.NET20.dll" />
-    <Content Include="DatabaseSpecific\bin\Debug\SD.LLBLGen.Pro.ORMSupportClasses.NET20.pdb" />
-    <Content Include="DatabaseSpecific\bin\Debug\SD.LLBLGen.Pro.ORMSupportClasses.NET20.xml" />
-    <Content Include="DatabaseSpecific\bin\Debug\WebConnection.DALDBSpecific.dll" />
-    <Content Include="DatabaseSpecific\bin\Debug\WebConnection.DALDBSpecific.pdb" />
+    <None Include="EntityDiagrams1.rlinq.diagram">
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
+    </None>
+    <OpenAccessDeploy Include="EntityDiagrams1.rlinq">
+      <Generator>MetaModelCodeGenerator</Generator>
+      <LastGenOutput>EntityDiagrams1.cs</LastGenOutput>
+    </OpenAccessDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />
 </Project>

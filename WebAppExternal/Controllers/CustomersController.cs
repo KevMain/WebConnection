@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
+using CCE.WebConnection.BL.Models.Domain.Abstract;
 using CCE.WebConnection.BL.Models.ViewModels;
 using CCE.WebConnection.BL.Repository.Abstract;
 
@@ -39,13 +42,27 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         // GET: /Customers/Grid
         public ActionResult Grid()
         {
-            return View(customersRepository.GetAll());
+            //-- Get the list of customers
+            IEnumerable<ICustomer> customers = customersRepository.GetAll();
+
+            //-- Create a new view model to display
+            CustomersViewModel customersViewModel = new CustomersViewModel(customers);
+
+            //-- Show view
+            return View(customersViewModel);
         }
 
         // GET: /Customers/Details/5
         public ActionResult Details(int id)
         {
-            return View(customersRepository.GetByID(id));
+            //-- Get details of this customer
+            ICustomer customer = customersRepository.GetByID(id);
+
+            //-- Create customer view
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
+
+            //-- Show view
+            return View(customerViewModel);
         }
 
         // GET: /Customers/Create
@@ -61,14 +78,20 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-           customersRepository.Save(customerViewModel);
+            customersRepository.Save(Mapper.Map<CustomerViewModel, ICustomer>(customerViewModel));
             return RedirectToAction("Grid", "Customers");
         }
 
         // GET: /Customers/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(customersRepository.GetByID(id));
+            //-- Get details of this customer
+            ICustomer customer = customersRepository.GetByID(id);
+
+            //-- Create customer view
+            CustomerViewModel customerViewModel = new CustomerViewModel(customer);
+
+            return View(customerViewModel);
         }
 
         // POST: /Customers/Edit/5
@@ -78,15 +101,24 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
             if (!ModelState.IsValid)
                 return View(customerViewModel);
 
-            customersRepository.Save(customerViewModel);
-            return RedirectToAction("Details", "Customers", new { id = customerViewModel.CustomerID });
+            customersRepository.Save(Mapper.Map<CustomerViewModel, ICustomer>(customerViewModel));
+
+            return RedirectToAction("Details", "Customers", new { id = customerViewModel.PkId });
         }
 
-        // GET: /Customers/Delete/5
+
+        // DELETE: /Customers/Delete/5
+        [HttpDelete]
+       // [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            customersRepository.Delete(customersRepository.GetByID(id));
-            return RedirectToAction("Grid", "Customers");
+            //-- Delete the item
+            customersRepository.Delete(id);
+
+            //-- Create a new view model to display
+            CustomersViewModel customersViewModel = new CustomersViewModel(customersRepository.GetAll());
+
+            return PartialView("PartialViews/_CustomerGrid", customersViewModel);
         }
     }
 }

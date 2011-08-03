@@ -56,9 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextMocks.cs" />
-    <Compile Include="Controllers\CustomersControllerTest.cs" />
-    <Compile Include="Fakes\FakeCustomerData.cs" />
-    <Compile Include="Fakes\FakeCustomersRepository.cs" />
+    <Compile Include="Controllers\CustomersControllerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fakes\FakeCustomerData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fakes\FakeCustomersRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +77,7 @@
       <Name>WebAppExternal</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

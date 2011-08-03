@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="EntitiesModel" backend="ads" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CCE.WebConnection.DAL" default="true">
+      <orm:class name="Customer" behavior="readwrite" uniqueId="d1dc1417-e326-46b5-81d5-454ad097cb55">
+        <orm:table name="Customer" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_pkId" />
+        </orm:identity>
+        <orm:discriminator discriminator-value="CCE.WebConnection.DAL.Customer" />
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="1bd447be-7321-4bf4-9a30-2d0a49ca6ccd" type="System.Int32">
+          <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="45a890f8-d4f3-4250-b9de-6601ea3b562f" type="System.String">
+          <orm:column name="Name" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        </orm:field>
+      </orm:class>
+      <orm:interface name="ICustomerEntity" uniqueId="34a075cc-d528-406c-8a7e-2c445c38a1ca">
+        <orm:field name="_pkId" property="PkId" uniqueId="36d46293-3216-4f25-a930-d1d2189c77d2" type="System.Int32" />
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="d2845a94-b60a-4c73-8000-3dcc64ce40b3" type="System.String" />
+      </orm:interface>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="List">
+        <orm:column name="ID" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="Other" />
+      </orm:table>
+      <orm:table name="Customer">
+        <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+      </orm:table>
+    </orm:schema>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>Connection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>data source=C:\Projects\DB\LiveData.add;user id=AdsSys;password=hondaf6c</AppConfigConnectionString>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings>
+      <DeploymentProject>DAL</DeploymentProject>
+      <DeploymentDirectory>C:\Projects\WebConnection\DAL</DeploymentDirectory>
+    </SchemaUpdateSettings>
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>ads</Backend>
+        <ProviderName>Advantage.Data.Provider</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="d1dc1417-e326-46b5-81d5-454ad097cb55" name="Customer" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="1bd447be-7321-4bf4-9a30-2d0a49ca6ccd" name="PkId" type="Int32" label="PkId : Int32" kind="Persistent" identity="true" fieldName="_pkId" />
+      <Property Id="45a890f8-d4f3-4250-b9de-6601ea3b562f" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+    </DomainClass>
+    <Interface Id="34a075cc-d528-406c-8a7e-2c445c38a1ca" name="ICustomerEntity" namespace="CCE.WebConnection.DAL" inheritanceModifier="Abstract" showPropertiesCompartment="true">
+      <Property Id="36d46293-3216-4f25-a930-d1d2189c77d2" name="PkId" type="Int32" label="PkId : Int32" />
+      <Property Id="d2845a94-b60a-4c73-8000-3dcc64ce40b3" name="Name" label="Name : String" />
+    </Interface>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="141fc753-20e3-4f46-b929-b8467286b6db">
+      <domainContainer name="EntitiesModel" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
+        <entitySetProperty name="Customers" namespace="CCE.WebConnection.DAL" type="Customer" label="Customers : IQueryable&lt;CCE.WebConnection.DAL.Customer&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

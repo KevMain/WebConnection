@@ -1,0 +1,17 @@
+﻿@model CCE.WebConnection.BL.Models.ViewModels.CustomersViewModel
+        
+<table>
+    <tr>    
+        <th>Customer Name</th>
+        <th>View</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var item in Model.Customers)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.ActionLink("View", "Details", "Customers", new { id = item.PkId }, null)</td>
+            <td>@Ajax.ActionLink("Delete", "Delete", new { id = item.PkId }, new AjaxOptions { Confirm = "Delete customer?", HttpMethod = "Delete", UpdateTargetId = "customerList" })</td>
+        </tr>
+    }
+</table>
