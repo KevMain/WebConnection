@@ -60,7 +60,7 @@ namespace CCE.WebConnection.BL.Models.Domain.Concrete
             // than return false in certain failure scenarios.
             try
             {
-                MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
+                MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */); 
                 return currentUser != null && currentUser.ChangePassword(oldPassword, newPassword);
             }
             catch (ArgumentException)

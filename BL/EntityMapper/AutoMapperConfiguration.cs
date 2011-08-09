@@ -11,6 +11,7 @@ namespace CCE.WebConnection.BL.EntityMapper
         {
             Mapper.CreateMap<ICustomerEntity, ICustomer>();
             Mapper.CreateMap<CustomerViewModel, ICustomer>();
+            Mapper.CreateMap<IUserEntity, IUser>();
         }
     }
 }

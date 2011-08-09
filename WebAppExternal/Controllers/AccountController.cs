@@ -81,6 +81,8 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
+            model.UserName = User.Identity.Name;
+
             if (ModelState.IsValid)
             {
                 if (MembershipService.ChangePassword(model.UserName, model.OldPassword, model.NewPassword))
@@ -92,6 +94,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
             return View(model);
         }
 

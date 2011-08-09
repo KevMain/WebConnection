@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Web.Configuration;
 using System.Web.Security;
+using CCE.WebConnection.BL.Models.Domain.Abstract;
+using CCE.WebConnection.BL.Models.Domain.Concrete;
 using CCE.WebConnection.BL.Repository.Abstract;
 using CCE.WebConnection.Common;
 using CCE.WebConnection.DAL.Abstract;
@@ -11,16 +13,19 @@ namespace CCE.WebConnection.BL.Membership
     public class CustomMembershipProvider : MembershipProvider
     {
         public IUserRepository UserRepository { get; set; }
-
+        public IMembershipSettings MembershipSettings { get; set; }
+        
         public CustomMembershipProvider()
         {
             IEntitiesModel entitiesModel = IoCManager.Container().Resolve<IEntitiesModel>();
             UserRepository = IoCManager.Container().Resolve<IUserRepository>(entitiesModel);
+            MembershipSettings = IoCManager.Container().Resolve<IMembershipSettings>();
         }
 
-        public CustomMembershipProvider(IUserRepository userRepository)
+        public CustomMembershipProvider(IUserRepository userRepository, IMembershipSettings membershipSettings)
         {
             UserRepository = userRepository;
+            MembershipSettings = membershipSettings;
         }
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
@@ -40,7 +45,7 @@ namespace CCE.WebConnection.BL.Membership
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            return UserRepository.UpdatePassword(UserRepository.GetByUsername(username), newPassword);
         }
 
         public override string ResetPassword(string username, string answer)
@@ -70,7 +75,7 @@ namespace CCE.WebConnection.BL.Membership
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            throw new NotImplementedException();
+            return GetUser(UserRepository.GetByUsername(username));
         }
 
         public override string GetUserNameByEmail(string email)
@@ -146,17 +151,7 @@ namespace CCE.WebConnection.BL.Membership
 
         public override int MinRequiredPasswordLength
         {
-            get
-            {
-                //IMembershipSettings mSetting = new MembershipSettings();
-                //m.GetValue("settingName", defaultValue");
-                
-                //-- Get the setting from the Config
-                var minRequiredLength = MembershipHelper.GetSettingAsInt(Const.Membership.MembershipValues.MinRequiredPasswordLength, Const.Membership.DEFAULT_PASSWORD_LENGTH);
-
-                //-- Return value
-                return minRequiredLength;
-            }
+            get { return MembershipSettings.MinRequiredPasswordLength; }
         }
 
 
@@ -168,6 +163,12 @@ namespace CCE.WebConnection.BL.Membership
         public override string PasswordStrengthRegularExpression
         {
             get { throw new NotImplementedException(); }
+        }
+
+
+        private CustomMembershipUser GetUser(IUser user)
+        {
+            return new CustomMembershipUser(Name, user.Username, user.PkId);
         }
     }
 }

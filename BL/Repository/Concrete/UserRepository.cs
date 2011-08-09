@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using CCE.WebConnection.BL.Models.Domain.Abstract;
 using CCE.WebConnection.BL.Repository.Abstract;
 using CCE.WebConnection.DAL;
@@ -13,12 +14,14 @@ namespace CCE.WebConnection.BL.Repository.Concrete
         #region Properties
 
         public IEntitiesModel EntitiesModel { get; set; }
+        private IMappingEngine MappingEngine { get; set; }
 
         #endregion
 
-        public UserRepository(IEntitiesModel entitiesModel)
+        public UserRepository(IEntitiesModel entitiesModel, IMappingEngine mappingEngine)
         {
             EntitiesModel = entitiesModel;
+            MappingEngine = mappingEngine;
         }
 
         public IEnumerable<IUser> GetAll()
@@ -53,6 +56,31 @@ namespace CCE.WebConnection.BL.Repository.Concrete
             }
 
             return isValid;
+        }
+
+        public IUser GetByUsername(string username)
+        {
+            IUserEntity userEntity = (from c in EntitiesModel.Users where c.Username == username select c).Single();
+            return MappingEngine.Map<IUserEntity, IUser>(userEntity);
+        }
+
+        public bool UpdatePassword(IUser user, string newPassword)
+        {
+            bool isSuccess = false;
+
+            try
+            {
+                IUserEntity userEntity = (from c in EntitiesModel.Users where c.PkId == user.PkId select c).Single();
+                userEntity.Password = newPassword;
+                EntitiesModel.SaveChanges();
+
+                isSuccess = true;
+            }
+            catch (Exception)
+            {
+            }
+
+            return isSuccess;
         }
     }
 }

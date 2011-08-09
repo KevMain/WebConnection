@@ -5,7 +5,7 @@ namespace CCE.WebConnection.BL.Models.ViewModels
 {
     public class ChangePasswordViewModel
     {
-        [Required]
+        //[Required]
         [DataType(DataType.Text)]
         [Display(Name = "Username")]
         public string UserName { get; set; }
