@@ -14,7 +14,7 @@ namespace CCE.WebConnection.WebAppExternal.Plumbing
             RegisterRoutes(RouteTable.Routes);
 
             ControllerBuilder.Current.SetControllerFactory(new IocControllerFactory());
-
+            
             AutoMapperConfiguration.Configure();  
         }
 

@@ -13,14 +13,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Data.Common;
 using System.Collections.Generic;
-using CCE.WebConnection.DAL.Abstract;
 using Telerik.OpenAccess;
 using Telerik.OpenAccess.Metadata;
 
 
 namespace CCE.WebConnection.DAL	
 {
-    public partial class EntitiesModel : OpenAccessContext, IEntitiesModel
+	public partial class EntitiesModel : OpenAccessContext, CCE.WebConnection.DAL.Abstract.IEntitiesModel
 	{
 		private static string connectionStringName = @"Connection";
 			
@@ -54,6 +53,14 @@ namespace CCE.WebConnection.DAL
 	    	get
 	    	{
 	        	return this.GetAll<Customer>();
+	    	}
+		}
+		
+		public IQueryable<User> Users 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<User>();
 	    	}
 		}
 		

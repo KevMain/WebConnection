@@ -19,33 +19,22 @@ using Telerik.OpenAccess.Metadata;
 
 namespace CCE.WebConnection.DAL	
 {
-	public partial class Customer : ICustomerEntity
+	public interface IUserEntity
 	{
-		private int _pkId;
-		public virtual int PkId 
+		int PkId 
 		{ 
-		    get
-		    {
-		        return this._pkId;
-		    }
-		    set
-		    {
-		        this._pkId = value;
-		    }
+			get;
+			set;
 		}
-		
-		private string _name;
-		public virtual string Name 
+		string Username 
 		{ 
-		    get
-		    {
-		        return this._name;
-		    }
-		    set
-		    {
-		        this._name = value;
-		    }
+			get;
+			set;
 		}
-		
+		string Password 
+		{ 
+			get;
+			set;
+		}
 	}
 }

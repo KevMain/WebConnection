@@ -62,7 +62,13 @@
     <Compile Include="ICustomerEntity.generated.cs">
       <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="IUserEntity.generated.cs">
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.generated.cs">
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

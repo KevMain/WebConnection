@@ -403,6 +403,8 @@ namespace CCE.WebConnection.Tests.Controllers
 
             CustomerViewModel customerViewModel = new CustomerViewModel(customer);
 
+            AutoMapperConfiguration.Configure();
+
             // Act
             controller.Create(customerViewModel);
 

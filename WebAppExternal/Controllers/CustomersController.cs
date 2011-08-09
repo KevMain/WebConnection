@@ -34,12 +34,15 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         #endregion
 
         // GET: /Customers/
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: /Customers/Grid
+        [Authorize]
+        [OutputCache(Duration = 6000)]
         public ActionResult Grid()
         {
             //-- Get the list of customers
@@ -53,6 +56,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         }
 
         // GET: /Customers/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             //-- Get details of this customer
@@ -66,6 +70,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         }
 
         // GET: /Customers/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -73,6 +78,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
 
         // Post: /Customers/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid)
@@ -83,6 +89,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
         }
 
         // GET: /Customers/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             //-- Get details of this customer
@@ -96,6 +103,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
 
         // POST: /Customers/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid)
@@ -109,7 +117,7 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
 
         // DELETE: /Customers/Delete/5
         [HttpDelete]
-       // [ActionName("Delete")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             //-- Delete the item

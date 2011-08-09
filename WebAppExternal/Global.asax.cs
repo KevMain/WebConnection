@@ -10,7 +10,7 @@ namespace CCE.WebConnection.WebAppExternal
         /// </summary>        
         public static bool IsDebug
         {
-            get { return false; }
+            get { return true; }
         }
 
         protected void Application_Start()

@@ -8,7 +8,7 @@
           <orm:key-generator name="autoinc" />
           <orm:single-field field-name="_pkId" />
         </orm:identity>
-        <orm:discriminator discriminator-value="CCE.WebConnection.DAL.Customer" />
+        <orm:discriminator discriminator-value="{no}" />
         <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="1bd447be-7321-4bf4-9a30-2d0a49ca6ccd" type="System.Int32">
           <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         </orm:field>
@@ -16,9 +16,30 @@
           <orm:column name="Name" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
         </orm:field>
       </orm:class>
-      <orm:interface name="ICustomerEntity" uniqueId="34a075cc-d528-406c-8a7e-2c445c38a1ca">
-        <orm:field name="_pkId" property="PkId" uniqueId="36d46293-3216-4f25-a930-d1d2189c77d2" type="System.Int32" />
-        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="d2845a94-b60a-4c73-8000-3dcc64ce40b3" type="System.String" />
+      <orm:class name="User" behavior="readwrite" uniqueId="fd1d4d69-2cba-4c6b-a49f-6d5cfb2b3e8a">
+        <orm:table name="User" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_pkId" />
+        </orm:identity>
+        <orm:field name="_username" property="Username" behavior="readwrite" uniqueId="8fc65dab-a654-40a8-a83b-76cdb9f5bdfc" type="System.String">
+          <orm:column name="Username" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        </orm:field>
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="040d0ee3-5e63-41f9-ad7b-87c89502173c" type="System.Int32">
+          <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_password" property="Password" behavior="readwrite" uniqueId="ad7ed1a5-f4f9-4d39-8954-b51f492e0dba" type="System.String">
+          <orm:column name="Password" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        </orm:field>
+      </orm:class>
+      <orm:interface name="ICustomerEntity" uniqueId="93c29aec-7aad-4fba-ace9-5bae200e650c">
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="5f10cf97-7d7b-48ac-929b-a63428ee7985" type="System.Int32" />
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="09c6c47b-6e32-4eeb-9496-c6a3df8de71a" type="System.String" />
+      </orm:interface>
+      <orm:interface name="IUserEntity" uniqueId="3b60997e-ef26-4a9f-9385-481d305af391">
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="82b783d6-4cfb-4608-8e27-afbf9ccba83a" type="System.Int32" />
+        <orm:field name="_username" property="Username" behavior="readwrite" uniqueId="c2ea1424-abbc-4491-ace8-bda40ec372c6" type="System.String" />
+        <orm:field name="_password" property="Password" behavior="readwrite" uniqueId="165d0d6e-aff2-4d1b-907f-aae231131520" type="System.String" />
       </orm:interface>
     </orm:namespace>
     <orm:schema schema="">
@@ -29,6 +50,11 @@
       <orm:table name="Customer">
         <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+      </orm:table>
+      <orm:table name="User">
+        <orm:column name="Username" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Password" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
       </orm:table>
     </orm:schema>
   </orm:orm>
@@ -67,15 +93,26 @@
       <Property Id="1bd447be-7321-4bf4-9a30-2d0a49ca6ccd" name="PkId" type="Int32" label="PkId : Int32" kind="Persistent" identity="true" fieldName="_pkId" />
       <Property Id="45a890f8-d4f3-4250-b9de-6601ea3b562f" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
     </DomainClass>
-    <Interface Id="34a075cc-d528-406c-8a7e-2c445c38a1ca" name="ICustomerEntity" namespace="CCE.WebConnection.DAL" inheritanceModifier="Abstract" showPropertiesCompartment="true">
-      <Property Id="36d46293-3216-4f25-a930-d1d2189c77d2" name="PkId" type="Int32" label="PkId : Int32" />
-      <Property Id="d2845a94-b60a-4c73-8000-3dcc64ce40b3" name="Name" label="Name : String" />
+    <Interface Id="93c29aec-7aad-4fba-ace9-5bae200e650c" name="ICustomerEntity" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
+      <Property Id="5f10cf97-7d7b-48ac-929b-a63428ee7985" name="PkId" type="Int32" label="PkId : Int32" />
+      <Property Id="09c6c47b-6e32-4eeb-9496-c6a3df8de71a" name="Name" label="Name : String" />
     </Interface>
+    <Interface Id="3b60997e-ef26-4a9f-9385-481d305af391" name="IUserEntity" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
+      <Property Id="82b783d6-4cfb-4608-8e27-afbf9ccba83a" name="PkId" type="Int32" label="PkId : Int32" />
+      <Property Id="c2ea1424-abbc-4491-ace8-bda40ec372c6" name="Username" label="Username : String" />
+      <Property Id="165d0d6e-aff2-4d1b-907f-aae231131520" name="Password" label="Password : String" />
+    </Interface>
+    <DomainClass Id="fd1d4d69-2cba-4c6b-a49f-6d5cfb2b3e8a" name="User" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="040d0ee3-5e63-41f9-ad7b-87c89502173c" name="PkId" type="Int32" label="PkId : Int32" kind="Persistent" identity="true" fieldName="_pkId" />
+      <Property Id="ad7ed1a5-f4f9-4d39-8954-b51f492e0dba" name="Password" label="Password : String" kind="Persistent" fieldName="_password" />
+      <Property Id="8fc65dab-a654-40a8-a83b-76cdb9f5bdfc" name="Username" label="Username : String" kind="Persistent" fieldName="_username" />
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="141fc753-20e3-4f46-b929-b8467286b6db">
       <domainContainer name="EntitiesModel" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
         <entitySetProperty name="Customers" namespace="CCE.WebConnection.DAL" type="Customer" label="Customers : IQueryable&lt;CCE.WebConnection.DAL.Customer&gt;" />
+        <entitySetProperty name="Users" namespace="CCE.WebConnection.DAL" type="User" label="Users : IQueryable&lt;CCE.WebConnection.DAL.User&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>
