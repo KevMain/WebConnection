@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="EntitiesModel" backend="ads" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CCE.WebConnection.DAL" default="true">
+      <orm:class name="User" behavior="readwrite" uniqueId="97cd0bfd-e5a9-48ff-b15d-91a5ffc2e3e8">
+        <orm:table name="User" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_pkId" />
+        </orm:identity>
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="b327d81d-f15f-4725-b378-cba771ecca56" type="System.Int32">
+          <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_username" property="Username" behavior="readwrite" uniqueId="22736cd8-259c-458b-a0d9-f081e9680dfa" type="System.String">
+          <orm:column name="Username" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        </orm:field>
+        <orm:field name="_password" property="Password" behavior="readwrite" uniqueId="2120f568-f34f-40db-ba2a-ce11a82cf095" type="System.String">
+          <orm:column name="Password" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Customer" behavior="readwrite" uniqueId="d867c6cd-7c34-4a51-b641-64af2350155e">
+        <orm:table name="Customer" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_pkId" />
+        </orm:identity>
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="b1b7affe-e8ae-40f4-840e-10f58dcdcbde" type="System.Int32">
+          <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="41380be6-0c4a-47db-b052-1bf32084cd60" type="System.String">
+          <orm:column name="Name" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        </orm:field>
+      </orm:class>
+      <orm:interface name="IUserEntity" uniqueId="04f09414-aa60-4773-9b5a-7bdb8cc23e14">
+        <orm:field name="_" property="PkId" behavior="readwrite" uniqueId="e9f5defd-9e63-4e4c-90be-f3fc73a9f3bc" type="System.Int32" />
+        <orm:field name="_password" property="Password" behavior="readwrite" uniqueId="d1add505-e491-40cd-bbc4-59936bcda1ad" type="System.String" />
+        <orm:field name="_username" property="Username" behavior="readwrite" uniqueId="c732b8c0-af28-4668-8bf2-373cf494fc27" type="System.String" />
+      </orm:interface>
+      <orm:interface name="ICustomerEntity" uniqueId="0cd33426-6cd5-4dff-96df-01457f6be2da">
+        <orm:field name="_pkId" property="PkId" behavior="readwrite" uniqueId="61a8e3df-821b-4f33-abef-e7e02ba4e39b" type="System.Int32" />
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="0bc4d472-c878-4e7a-a48f-de5ca58d95c2" type="System.String" />
+      </orm:interface>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="User">
+        <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Username" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+        <orm:column name="Password" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+      </orm:table>
+      <orm:table name="Customer">
+        <orm:column name="PkId" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="Other" />
+      </orm:table>
+    </orm:schema>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>Connection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>Data Source=C:\Projects\DB\LiveData.add;Password=hondaf6c;User ID=AdsSys;LockMode=PROPRIETARY;TableType=ADT</AppConfigConnectionString>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>ads</Backend>
+        <ProviderName>Advantage.Data.Provider</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="97cd0bfd-e5a9-48ff-b15d-91a5ffc2e3e8" name="User" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="b327d81d-f15f-4725-b378-cba771ecca56" name="PkId" type="Int32" label="PkId : Int32" kind="Persistent" identity="true" fieldName="_pkId" />
+      <Property Id="2120f568-f34f-40db-ba2a-ce11a82cf095" name="Password" label="Password : String" kind="Persistent" fieldName="_password" />
+      <Property Id="22736cd8-259c-458b-a0d9-f081e9680dfa" name="Username" label="Username : String" kind="Persistent" fieldName="_username" />
+    </DomainClass>
+    <DomainClass Id="d867c6cd-7c34-4a51-b641-64af2350155e" name="Customer" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="b1b7affe-e8ae-40f4-840e-10f58dcdcbde" name="PkId" type="Int32" label="PkId : Int32" kind="Persistent" identity="true" fieldName="_pkId" />
+      <Property Id="41380be6-0c4a-47db-b052-1bf32084cd60" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+    </DomainClass>
+    <Interface Id="04f09414-aa60-4773-9b5a-7bdb8cc23e14" name="IUserEntity" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
+      <Property Id="e9f5defd-9e63-4e4c-90be-f3fc73a9f3bc" name="PkId" type="Int32" label="PkId : Int32" fieldName="_" />
+      <Property Id="d1add505-e491-40cd-bbc4-59936bcda1ad" name="Password" label="Password : String" />
+      <Property Id="c732b8c0-af28-4668-8bf2-373cf494fc27" name="Username" label="Username : String" />
+    </Interface>
+    <Interface Id="0cd33426-6cd5-4dff-96df-01457f6be2da" name="ICustomerEntity" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
+      <Property Id="61a8e3df-821b-4f33-abef-e7e02ba4e39b" name="PkId" type="Int32" label="PkId : Int32" />
+      <Property Id="0bc4d472-c878-4e7a-a48f-de5ca58d95c2" name="Name" label="Name : String" />
+    </Interface>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="a5e95794-c285-4f91-80ce-296175108471">
+      <domainContainer name="EntitiesModel" namespace="CCE.WebConnection.DAL" showPropertiesCompartment="true">
+        <entitySetProperty name="Users" namespace="CCE.WebConnection.DAL" type="User" label="Users : IQueryable&lt;CCE.WebConnection.DAL.User&gt;" />
+        <entitySetProperty name="Customers" namespace="CCE.WebConnection.DAL" type="Customer" label="Customers : IQueryable&lt;CCE.WebConnection.DAL.Customer&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

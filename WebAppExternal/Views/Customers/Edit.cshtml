@@ -1,0 +1,26 @@
+﻿@model CCE.WebConnection.BL.Models.ViewModels.CustomerViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Customer</h2>
+
+<p>
+    @Html.ValidationSummary("Unsuccessful. Please correct the errors and try again.")
+</p>
+
+@using(Html.BeginForm())
+{
+    <fieldset>
+        <legend>Fields</legend>
+        @Html.EditorFor(c => c)
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+   @Html.ActionLink("Back to Details", "Details", "Customers", new { id = Model.PkId }, null)
+</div>

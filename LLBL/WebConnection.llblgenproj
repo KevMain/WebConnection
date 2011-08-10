@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--LLBLGen Pro v3.1 project file. Do not manually edit this file. Incorrect references could lead to an unloadable project file.-->
+<Project Version="3.1" TargetFrameworkName="LLBLGen Pro Runtime Framework">
+  <Properties>
+    <Abbreviations />
+    <Property Name="AdditionalTaskPerformerFolder" Value="" />
+    <Property Name="AdditionalTasksFolder" Value="" />
+    <Property Name="AdditionalTemplatesFolder" Value="" />
+    <Property Name="AdditionalTypeConverterFolder" Value="" />
+    <Property Name="AddNewElementsAfterRefresh" Value="0" />
+    <Property Name="AddNewFieldsAfterRefresh" Value="0" />
+    <Property Name="AddNewViewsAsEntitiesAfterRefresh" Value="0" />
+    <Property Name="AutoAddManyToManyRelationships" Value="false" />
+    <Property Name="AutoAssignSequencesToIntegerPks" Value="true" />
+    <Property Name="AutoAssignTypeConverterToFieldMapping" Value="false" />
+    <Property Name="CleanUpVsNetProjects" Value="true" />
+    <Property Name="ConnectionStringKeyNamePattern" Value="ConnectionString.{$ProviderName}" />
+    <Property Name="EncodingToUse" Value="0" />
+    <Property Name="EnforcePascalCasingAlways" Value="true" />
+    <Property Name="EntityFieldNameStripPattern" Value="{}{}" />
+    <Property Name="EntityNameStripPattern" Value="{tbl_}{}" />
+    <Property Name="ExcludableOrphanedElementDetectedAction" Value="3" />
+    <Property Name="FailCodeGenerationOnWriteError" Value="false" />
+    <Property Name="FieldMappedOntoRelatedFieldPattern" Value="{$RelatedFieldName}" />
+    <Property Name="FkFieldsAreNamedAfterTargetField" Value="true" />
+    <Property Name="ForeignKeyFieldPattern" Value="{$NavigatorName}{$RelatedFieldName}" />
+    <Property Name="GroupUsage" Value="0" />
+    <Property Name="IdentifyingFieldsFollowDBPrimaryKeyConstraints" Value="0" />
+    <Property Name="InsertUnderscoreAtWordBreakCaseSensitiveDBs" Value="false" />
+    <Property Name="LengthPrecisionScaleFollowDBLengthPrecisionScale" Value="0" />
+    <Property Name="MakeElementNamePascalCasing" Value="true" />
+    <Property Name="NavigatorMappedOntoManyToManyPattern" Value="{$EndEntityName}CollectionVia{$IntermediateEntityName$S}" />
+    <Property Name="NavigatorMappedOntoOneManyToOnePattern" Value="{$EndEntityName$S}" />
+    <Property Name="NavigatorMappedOntoOneToManyPattern" Value="{$EndEntityName$P}" />
+    <Property Name="NonExcludableOrphanedElementDetectedAction" Value="3" />
+    <Property Name="PreferDecimalOverCurrencyTypes" Value="true" />
+    <Property Name="PreferNaturalCharacterTypes" Value="true" />
+    <Property Name="PreferVariableLengthTypes" Value="true" />
+    <Property Name="ProjectCreator" Value="Kevin Main" />
+    <Property Name="ProjectName" Value="WebConnection" />
+    <Property Name="RelationalModelDataElementNameCasingCaseSensitiveDBs" Value="3" />
+    <Property Name="RelationshipsFollowDBForeignKeyConstraints" Value="0" />
+    <Property Name="RemoveUnderscoresFromElementName" Value="true" />
+    <Property Name="RemoveUnmappedElementsAfterRefresh" Value="0" />
+    <Property Name="ResetFieldOrderBasedOnTargetOrderAtRefresh" Value="false" />
+    <Property Name="RetrieveDBCustomProperties" Value="false" />
+    <Property Name="RootNamespace" Value="" />
+    <Property Name="SequencePattern" Value="SEQ_{$EntityName}" />
+    <Property Name="SetGroupNameAfterSchemaName" Value="true" />
+    <Property Name="SetSchemaNameAfterGroupName" Value="true" />
+    <Property Name="StoredProcNameStripPattern" Value="{pr_, sp_}{}" />
+    <Property Name="StoreTimeLastGeneratedIntoProject" Value="false" />
+    <Property Name="SyncMappedElementNamesAfterRefresh" Value="0" />
+    <Property Name="SyncRelationalModelDataElementNameAfterRename" Value="0" />
+    <Property Name="SyncRenamedMappedElementNamesAfterRefresh" Value="0" />
+    <Property Name="TargetPerEntityEdgesRequireBackingFkConstraint" Value="true" />
+    <Property Name="TypedViewFieldNameStripPattern" Value="{}{}" />
+    <Property Name="TypedViewNameStripPattern" Value="{vw_}{}" />
+    <Property Name="UniqueConstraintsFollowDBUniqueConstraints" Value="0" />
+    <Property Name="UpdateCustomPropertiesAfterRefresh" Value="0" />
+    <Property Name="UseCustomFieldOrderingOnNewElements" Value="false" />
+  </Properties>
+  <TypeShortcuts />
+  <CodeGenerationCyclePreferences>
+    <OutputType Value="3">
+      <LastUsedPreferences>
+        <DestinationRootFolder Value="C:\Projects\WebConnection\DAL" />
+        <FrameworkName Value="LLBLGen Pro Runtime Framework" />
+        <LanguageName Value="C#" />
+        <PlatformName Value=".NET 4.0" />
+        <PresetName Value="SD.Presets.Adapter.CCE" />
+        <RootNamespace Value="CCE.WebConnection.DAL" />
+        <TemplateGroup Value="Adapter" />
+        <TemplateBindings>
+          <Binding Name="CCE Custom Bindings" />
+          <Binding Name="SD.TemplateBindings.SqlServerSpecific.NET20" />
+          <Binding Name="SD.TemplateBindings.SharedTemplates.NET40" />
+          <Binding Name="SD.TemplateBindings.SharedTemplates.NET35" />
+          <Binding Name="SD.TemplateBindings.SharedTemplates.NET20" />
+          <Binding Name="SD.TemplateBindings.General" />
+        </TemplateBindings>
+      </LastUsedPreferences>
+    </OutputType>
+  </CodeGenerationCyclePreferences>
+  <CodeGenerationMetaDataDefaults>
+    <TargetElement Type="256">
+      <Defaults>
+        <Attributes>
+          <Attribute Value="Browsable($false)" />
+        </Attributes>
+      </Defaults>
+    </TargetElement>
+  </CodeGenerationMetaDataDefaults>
+  <EntityModel>
+    <ValueTypeDefinitions />
+    <EntityDefinitions>
+      <EntityDefinition Name="Customer">
+        <Fields>
+          <Field Name="Active" Type="bool" />
+          <Field Name="Created" Type="datetime" />
+          <Field Name="CreatedBy" Type="string" MaxLength="50" />
+          <Field Name="Deleted" Type="bool" />
+          <Field Name="Modified" Type="datetime" />
+          <Field Name="ModifiedBy" Type="string" MaxLength="50" />
+          <Field Name="Name" Type="string" IsOptional="true" MaxLength="100" />
+          <Field Name="PkId" Type="int" IsReadOnly="true" Precision="10" IsPrimaryKey="true" />
+          <Field Name="TimeStamp" Type="byte[]" IsReadOnly="true" />
+        </Fields>
+      </EntityDefinition>
+    </EntityDefinitions>
+    <Relationships />
+    <InheritanceHierarchies />
+  </EntityModel>
+  <TargetDatabases>
+    <TargetDatabase Type="2D18D138-1DD2-467E-86CC-4838250611AE">
+      <ConnectionElements>
+        <ConnectionElement Name="ServerName" Value="ITLENOVOS4RLM46\SQLEXPRESS" />
+        <ConnectionElement Name="CatalogName" Value="master" />
+        <ConnectionElement Name="UserID" Value="sa" />
+        <ConnectionElement Name="Password" Value="" />
+      </ConnectionElements>
+      <SystemSequences>
+        <Sequence Name="SCOPE_IDENTITY()" />
+        <Sequence Name="@@IDENTITY" />
+      </SystemSequences>
+      <Catalogs>
+        <Catalog Name="WebConnection">
+          <Schemas>
+            <Schema Name="dbo">
+              <Tables>
+                <Table Name="Customer">
+                  <Fields>
+                    <Field Name="pk_ID" Ordinal="1" IsIdentity="true" IsPrimaryKey="true" PkConstraintName="PK_Customer" DbType="8" Precision="10" />
+                    <Field Name="Name" Ordinal="2" IsOptional="true" DbType="24" Length="100" />
+                    <Field Name="Active" Ordinal="3" DefaultValue="((1))" DbType="2" />
+                    <Field Name="Deleted" Ordinal="4" DefaultValue="((0))" DbType="2" />
+                    <Field Name="Created" Ordinal="5" DbType="4" />
+                    <Field Name="CreatedBy" Ordinal="6" DbType="24" Length="50" />
+                    <Field Name="Modified" Ordinal="7" DbType="4" />
+                    <Field Name="ModifiedBy" Ordinal="8" DbType="24" Length="50" />
+                    <Field Name="TimeStamp" Ordinal="9" IsTimestamp="true" DbType="21" />
+                  </Fields>
+                </Table>
+              </Tables>
+            </Schema>
+          </Schemas>
+        </Catalog>
+      </Catalogs>
+    </TargetDatabase>
+  </TargetDatabases>
+  <MappingStores>
+    <MappingStore Type="2D18D138-1DD2-467E-86CC-4838250611AE">
+      <EntityMappings>
+        <EntityMapping EntityName=":Customer" TargetName="WebConnection:dbo:Customer">
+          <FieldMappings>
+            <FieldMapping FieldName="Active" TargetFieldName="Active" />
+            <FieldMapping FieldName="Created" TargetFieldName="Created" />
+            <FieldMapping FieldName="CreatedBy" TargetFieldName="CreatedBy" />
+            <FieldMapping FieldName="Deleted" TargetFieldName="Deleted" />
+            <FieldMapping FieldName="Modified" TargetFieldName="Modified" />
+            <FieldMapping FieldName="ModifiedBy" TargetFieldName="ModifiedBy" />
+            <FieldMapping FieldName="Name" TargetFieldName="Name" />
+            <FieldMapping FieldName="PkId" TargetFieldName="pk_ID" SequenceToUse="SCOPE_IDENTITY()" />
+            <FieldMapping FieldName="TimeStamp" TargetFieldName="TimeStamp" />
+          </FieldMappings>
+        </EntityMapping>
+      </EntityMappings>
+      <TypedViewMappings />
+      <SPCallMappings />
+      <TypeConversionDefinitions />
+    </MappingStore>
+  </MappingStores>
+  <ModelViews />
+</Project>

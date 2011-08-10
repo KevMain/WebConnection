@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FA81C899-5E2D-445A-8F98-F41944823007}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CCE.WebConnection.BL</RootNamespace>
+    <AssemblyName>CCE.WebConnection.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\Lib\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\Lib\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\Lib\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.OpenAccess, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik.OpenAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IoCManager.cs" />
+    <Compile Include="EntityMapper\AutoMapperConfiguration.cs" />
+    <Compile Include="Membership\CustomMembershipProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Membership\CustomMembershipUser.cs" />
+    <Compile Include="Models\Domain\Abstract\ICustomer.cs" />
+    <Compile Include="Models\Domain\Abstract\IFormsAuthenticationService.cs" />
+    <Compile Include="Models\Domain\Abstract\IMembershipService.cs" />
+    <Compile Include="Models\Domain\Abstract\IMembershipSettings.cs" />
+    <Compile Include="Models\Domain\Abstract\IUser.cs" />
+    <Compile Include="Models\Domain\Concrete\AccountMembershipService.cs" />
+    <Compile Include="Models\Domain\Concrete\Customer.cs" />
+    <Compile Include="Models\Domain\Concrete\FormsAuthenticationService.cs" />
+    <Compile Include="Models\Domain\Concrete\MembershipSettings.cs" />
+    <Compile Include="Models\Domain\Concrete\User.cs" />
+    <Compile Include="Models\Domain\IDomain.cs" />
+    <Compile Include="Models\ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\ViewModels\CustomersViewModel.cs" />
+    <Compile Include="Models\ViewModels\CustomerViewModel.cs" />
+    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Abstract\ICustomersRepository.cs" />
+    <Compile Include="Repository\Abstract\IUserRepository.cs" />
+    <Compile Include="Repository\Abstract\RepositoryBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repository\Concrete\CustomerRepository.cs" />
+    <Compile Include="Repository\Concrete\UserRepository.cs" />
+    <Compile Include="Repository\IRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6D466D9A-EF7E-41A4-9193-1C08820A3756}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{A6DA3CB8-AD09-424D-BF79-625A9DB59F00}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

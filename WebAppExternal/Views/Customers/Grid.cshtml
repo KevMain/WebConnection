@@ -1,0 +1,12 @@
+﻿@model CCE.WebConnection.BL.Models.ViewModels.CustomersViewModel
+           
+@{ ViewBag.Title = "Customers Grid"; }
+
+<h2>Customers Grid</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", "Customers") 
+</p>
+
+<div id="customerList">
+    @Html.Partial("PartialViews/_CustomerGrid")
+</div>
