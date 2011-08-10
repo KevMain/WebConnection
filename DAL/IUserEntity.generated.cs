@@ -26,12 +26,20 @@ namespace CCE.WebConnection.DAL
 			get;
 			set;
 		}
+<<<<<<< HEAD
 		string Password 
+=======
+		string Username 
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
 		{ 
 			get;
 			set;
 		}
+<<<<<<< HEAD
 		string Username 
+=======
+		string Password 
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
 		{ 
 			get;
 			set;

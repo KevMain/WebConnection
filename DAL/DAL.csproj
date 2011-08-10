@@ -5,7 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+<<<<<<< HEAD
     <ProjectGuid>{A6DA3CB8-AD09-424D-BF79-625A9DB59F00}</ProjectGuid>
+=======
+    <ProjectGuid>{4A4CDAA7-6D3D-48F6-A4EA-7C70E1EEEA6E}</ProjectGuid>
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CCE.WebConnection.DAL</RootNamespace>
@@ -17,7 +21,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
+<<<<<<< HEAD
     <OutputPath>bin\Debug\</OutputPath>
+=======
+    <OutputPath>DatabaseGeneric\bin\Debug\</OutputPath>
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +33,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
+<<<<<<< HEAD
     <OutputPath>bin\Release\</OutputPath>
+=======
+    <OutputPath>DatabaseGeneric\bin\Release\</OutputPath>
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,6 +45,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+<<<<<<< HEAD
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +55,25 @@
     <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+=======
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Telerik.OpenAccess, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik.OpenAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2011.2.713.3, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
     <Compile Include="Abstract\IEntitiesModel.cs" />
     <Compile Include="Customer.generated.cs">
       <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
@@ -62,12 +94,21 @@
       <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
     </Compile>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
+=======
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="EntityDiagrams1.rlinq.diagram">
+      <DependentUpon>EntityDiagrams1.rlinq</DependentUpon>
+    </None>
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
     <OpenAccessDeploy Include="EntityDiagrams1.rlinq">
       <Generator>MetaModelCodeGenerator</Generator>
       <LastGenOutput>EntityDiagrams1.cs</LastGenOutput>
     </OpenAccessDeploy>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="EntityDiagrams1.rlinq.diagram">
@@ -82,5 +123,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+=======
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
   <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />
 </Project>

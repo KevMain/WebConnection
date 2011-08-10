@@ -104,7 +104,11 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
+<<<<<<< HEAD
       <Project>{A6DA3CB8-AD09-424D-BF79-625A9DB59F00}</Project>
+=======
+      <Project>{4A4CDAA7-6D3D-48F6-A4EA-7C70E1EEEA6E}</Project>
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

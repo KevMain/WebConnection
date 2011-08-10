@@ -48,6 +48,7 @@ namespace CCE.WebConnection.DAL
 			:base(connection, backendConfiguration, metadataSource)
 		{ }
 			
+<<<<<<< HEAD
 		public IQueryable<User> Users 
 		{
 	    	get
@@ -61,6 +62,21 @@ namespace CCE.WebConnection.DAL
 	    	get
 	    	{
 	        	return this.GetAll<Customer>();
+=======
+		public IQueryable<Customer> Customers 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Customer>();
+	    	}
+		}
+		
+		public IQueryable<User> Users 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<User>();
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
 	    	}
 		}
 		

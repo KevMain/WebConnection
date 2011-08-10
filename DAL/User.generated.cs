@@ -21,6 +21,7 @@ namespace CCE.WebConnection.DAL
 {
 	public partial class User : IUserEntity
 	{
+<<<<<<< HEAD
 		private int _pkId;
 		public virtual int PkId 
 		{ 
@@ -44,6 +45,31 @@ namespace CCE.WebConnection.DAL
 		    set
 		    {
 		        this._username = value;
+=======
+		private string _username;
+		public virtual string Username 
+		{ 
+		    get
+		    {
+		        return this._username;
+		    }
+		    set
+		    {
+		        this._username = value;
+		    }
+		}
+		
+		private int _pkId;
+		public virtual int PkId 
+		{ 
+		    get
+		    {
+		        return this._pkId;
+		    }
+		    set
+		    {
+		        this._pkId = value;
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
 		    }
 		}
 		

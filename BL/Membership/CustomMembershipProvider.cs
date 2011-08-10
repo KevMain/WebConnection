@@ -6,7 +6,10 @@ using CCE.WebConnection.BL.Models.Domain.Abstract;
 using CCE.WebConnection.BL.Models.Domain.Concrete;
 using CCE.WebConnection.BL.Repository.Abstract;
 using CCE.WebConnection.Common;
+<<<<<<< HEAD
 using CCE.WebConnection.DAL;
+=======
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
 using CCE.WebConnection.DAL.Abstract;
 
 namespace CCE.WebConnection.BL.Membership
@@ -152,12 +155,19 @@ namespace CCE.WebConnection.BL.Membership
 
         public override int MinRequiredPasswordLength
         {
+<<<<<<< HEAD
             get
             {
                 return MembershipSettings.MinRequiredPasswordLength;
             }
         }
 
+=======
+            get { return MembershipSettings.MinRequiredPasswordLength; }
+        }
+
+
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
         public override int MinRequiredNonAlphanumericCharacters
         {
             get { throw new NotImplementedException(); }

@@ -42,6 +42,10 @@ namespace CCE.WebConnection.WebAppExternal.Controllers
 
         // GET: /Customers/Grid
         [Authorize]
+<<<<<<< HEAD
+=======
+        [OutputCache(Duration = 6000)]
+>>>>>>> 34ef6c6b94c7b04c4eb3cd4bb3a10d0f43d3542c
         public ActionResult Grid()
         {
             //-- Get the list of customers
